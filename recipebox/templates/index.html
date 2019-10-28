@@ -1,0 +1,13 @@
+<h1>WELCOME TO THE WORLD OF TOMORRROOOOWWWWW!!!!!!!!</h1>
+
+
+Recipes
+
+<ul>
+    {% for foo in data %}
+        <li>{{ foo.title }}, by {{ foo.author.name }}</li>
+        <ul>
+            <li>{{ foo.description }}</li>
+        </ul>
+    {% endfor %}
+</ul>
