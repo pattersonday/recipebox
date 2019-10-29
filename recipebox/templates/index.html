@@ -4,10 +4,11 @@
 Recipes
 
 <ul>
-    {% for foo in data %}
-        <li>{{ foo.title }}, by {{ foo.author.name }}</li>
+    {% for info in data %}
+        <li><a href = '/recipe/{{info.id}}/'>{{info.title}}</a>, by
+            <a href = '/author/{{info.author.id}}/'>{{ info.author.name }}</a></li>
         <ul>
-            <li>{{ foo.description }}</li>
+            <li>{{ info.description }}</li>
         </ul>
     {% endfor %}
 </ul>

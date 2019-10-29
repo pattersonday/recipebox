@@ -1,0 +1,13 @@
+<a href='/'>Home Page</a>
+
+{% for info in author %}
+    <h1>{{info.name}}</h1>
+{% endfor %}
+
+{% for item in author_recipe %}
+    <h2><a href = '/recipe/{{item.id}}/'>{{item.title}}</a></h2>
+{% endfor %}
+
+{% for info in author %}
+    <h3>{{info.bio}}</h3>
+{% endfor %}
