@@ -12,11 +12,12 @@ class Author(models.Model):
 
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    description = models.TextField()
-    time_required = models.IntegerField(default=1)
+    title = models.CharField(max_length=100)
     instructions = models.TextField()
+    time_required = models.IntegerField(default=1)
+    description = models.TextField()
+    # post_date = models.DateTimeField(default=1)
 
     def __str__(self):
         return f'{self.title} - {self.author.name}'
