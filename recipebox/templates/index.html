@@ -1,13 +1,22 @@
-<h1>Recipes for Fools Who Read This</h1>
+<h1>Recipes for Those Who Read This</h1>
+
+<a href='/authorform/'>Be a chef</a>
+<br>
+<a href='/recipeform/'>Add a recipe (must be a chef)</a>
 
 
 
 <ul>
     {% for info in data %}
-        <li><a href = '/recipe/{{info.id}}/'>{{info.title}}</a>, by
-            <a href = '/author/{{info.author.id}}/'>{{ info.author.name }}</a></li>
-        <ul>
-            <li>{{ info.description }}</li>
-        </ul>
+        <li>
+            <a href = '/author/{{info.author.id}}/'>{{ info.author.name }}</a>:
+            <ul>
+                <a href = '/recipe/{{info.id}}/'>{{info.title}}</a>
+            </ul>
+        
+            <ul>
+                <li>{{ info.description }}</li>
+            </ul>
+        </li>
     {% endfor %}
 </ul>
