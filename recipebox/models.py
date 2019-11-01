@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -17,7 +18,7 @@ class Recipe(models.Model):
     instructions = models.TextField()
     time_required = models.IntegerField(default=1)
     description = models.TextField()
-    # post_date = models.DateTimeField(default=1)
+    post_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f'{self.title} - {self.author.name}'

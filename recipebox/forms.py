@@ -15,4 +15,4 @@ class RecipeAddForm(forms.Form):
     instructions = forms.CharField(widget=forms.Textarea)
     time_required = forms.CharField(widget=forms.NumberInput)
     description = forms.CharField(widget=forms.Textarea)
-    # post_date = forms.CharField(widget=forms.DateTimeInput)
+    post_date = forms.CharField(widget=forms.DateTimeInput)

@@ -65,8 +65,8 @@ def recipe_form_view(request):
                 title=data['title'],
                 instructions=data['instructions'],
                 time_required=data['time_required'],
-                description=data['description']
-                # post_date=timezone.now()
+                description=data['description'],
+                post_date=timezone.now()
             )
             return HttpResponseRedirect(reverse('homepage'))
 
