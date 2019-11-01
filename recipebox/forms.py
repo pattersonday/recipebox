@@ -1,5 +1,5 @@
 from django import forms
-from .models import Author, Recipe
+from .models import Recipe
 
 
 class AuthorAddForm(forms.Form):
@@ -9,11 +9,17 @@ class AuthorAddForm(forms.Form):
 
 
 class RecipeAddForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = [
+            'author',
+            'title',
+            'ingredients',
+            'instructions',
+            'time_required',
+            'description',
+            'post_date'
+        ]
 
-    # author = forms.ModelChoiceField(queryset=Author.objects.all())
-    # title = forms.CharField(max_length=100)
-    # ingredients = forms.CharField(widget=forms.Textarea)
-    # instructions = forms.CharField(widget=forms.Textarea)
-    # time_required = forms.CharField(widget=forms.NumberInput)
-    # description = forms.CharField(widget=forms.Textarea)
-    # post_date = forms.CharField(widget=forms.DateTimeInput)
+
+form = RecipeAddForm()
