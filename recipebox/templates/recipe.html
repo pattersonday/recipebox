@@ -4,8 +4,9 @@
 {% for item in recipe %}
     <h1>{{item.author}}</h1>
     <h2>{{item.title}}</h2>
-    <h3>{{item.description}}</h3>
-    <h3>{{item.time_required}} minute(s)</h3>
+    <h3>{{item.ingredients}}</h3>
     <h3>{{item.instructions}}</h3>
-    <!-- <h6>{{item.post_date}}</h6> -->
+    <h3>{{item.time_required}} minute(s)</h3>
+    <h3>{{item.description}}</h3>
+    <h6>{{item.post_date}}</h6>
 {% endfor %}

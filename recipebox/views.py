@@ -63,6 +63,7 @@ def recipe_form_view(request):
             Recipe.objects.create(
                 author=data['author'],
                 title=data['title'],
+                ingredients=data['ingredients'],
                 instructions=data['instructions'],
                 time_required=data['time_required'],
                 description=data['description'],
