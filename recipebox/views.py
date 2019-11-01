@@ -4,8 +4,6 @@ from django.utils import timezone
 from .models import Author, Recipe
 from .forms import AuthorAddForm, RecipeAddForm
 
-# Create your views here.
-
 
 def index(request):
     html = 'index.html'
