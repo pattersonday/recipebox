@@ -28,5 +28,7 @@ urlpatterns = [
     path('recipe/<int:id>/', views.recipe_view),
     path('author/<int:id>/', views.author_view),
     path('recipeform/', views.recipe_form_view, name='recipeform'),
-    path('authorform/', views.author_form_view, name='authorform')
+    path('authorform/', views.author_form_view, name='authorform'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout')
 ]

@@ -1,8 +1,11 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.utils import timezone
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Author, Recipe
-from .forms import AuthorAddForm, RecipeAddForm
+from .forms import AuthorAddForm, LoginForm, RecipeAddForm
 
 
 def index(request):
@@ -40,16 +43,23 @@ def author_form_view(request):
 
         if form.is_valid():
             data = form.cleaned_data
+            u = User.objects.create_user(
+                username=data['name'],
+                password=data['password']
+            )
             Author.objects.create(
+                user=u,
                 name=data['name'],
-                bio=data['bio']
+                bio=data.get['bio']
             )
             return HttpResponseRedirect(reverse('homepage'))
+
     form = AuthorAddForm()
 
     return render(request, html, {'form': form})
 
 
+@login_required
 def recipe_form_view(request):
     html = 'generic_form.html'
 
@@ -72,3 +82,30 @@ def recipe_form_view(request):
     form = RecipeAddForm()
 
     return render(request, html, {'form': form})
+
+
+def login_view(request):
+    html = 'login_form.html'
+
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(
+                username=data['username'],
+                password=data['password']
+            )
+            if user:
+                login(request, user)
+                return HttpResponseRedirect(
+                    request.GET.get('next', reverse('homepage')))
+
+    form = LoginForm()
+
+    return render(request, html, {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('homepage'))
