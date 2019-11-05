@@ -35,6 +35,7 @@ def recipe_view(request, id):
     return render(request, html, {'recipe': recipe})
 
 
+@login_required
 def author_form_view(request):
     html = 'generic_form.html'
 
