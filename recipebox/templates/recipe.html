@@ -3,7 +3,7 @@
 
 
 {% for item in recipe %}
-    <h1>{{item.author}}</h1>
+    <h1><a href = '/author/{{item.id}}/'>{{item.author}}</a></h1>
     <h2>{{item.title}}</h2>
     <h3>{{item.ingredients}}</h3>
     <h3>{{item.instructions}}</h3>
