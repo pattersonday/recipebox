@@ -1,3 +1,9 @@
+{% load static %}
+
+<head>
+    <link rel='stylesheet' type='text/css' href='{% static "css/main.css" %}'>
+</head>
+
 <form action="/login/" method="post">
     {% csrf_token %}
     {{ form.as_p }}
