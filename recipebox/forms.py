@@ -18,7 +18,6 @@ class RecipeAddForm(forms.ModelForm):
             'instructions',
             'time_required',
             'description',
-            'post_date'
         ]
 
 
