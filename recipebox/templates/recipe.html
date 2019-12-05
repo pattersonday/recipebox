@@ -16,4 +16,13 @@
     <h3>{{item.time_required}} minute(s)</h3>
     <h3>{{item.description}}</h3>
     <h6>{{item.post_date}}</h6>
+    {% if request.user.is_authenticated %}
+        <button><a href = '/favorite/{{item.id}}'>favorite</a></button>
+        <button><a href = '/edit/{{item.id}}'>edit</a></button>
+
+
+
+
+    {% endif %}
 {% endfor %}
+

@@ -22,3 +22,11 @@
 {% for item in author_recipe %}
     <h3><a href = '/recipe/{{item.id}}/'>{{item.title}}</a></h3>
 {% endfor %}
+<h3>Favorites</h3>
+
+{% for fav in author.first.favorite.all %}
+    {% for item in author_recipe %}
+        <h3><a href = '/recipe/{{item.id}}/'>{{fav.title}}</a></h3>
+    {% endfor %}
+{% endfor %}
+
