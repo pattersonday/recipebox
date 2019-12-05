@@ -1,0 +1,17 @@
+{% load static %}
+
+<head>
+    <link rel='stylesheet' type='text/css' href='{% static "css/main.css" %}'>
+</head>
+
+<a href='/'>Home Page</a>
+<a href='/logout/'>Logout</a>
+{% if recipe.author.user == user or request.user.is_superuser %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+{% else %}
+<p>sorry cannot edit user</p>
+{% endif %}

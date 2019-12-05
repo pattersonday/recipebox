@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from .models import Author, Recipe
-from .forms import AuthorAddForm, LoginForm, RecipeAddForm
+from .forms import AuthorAddForm, LoginForm, RecipeAddForm, RecipeEditForm
 
 
 def index(request):
@@ -17,14 +17,27 @@ def index(request):
 
 
 def author_view(request, id):
+
     html = 'author.html'
 
     author = Author.objects.filter(id=id)
+
+    
 
     author_recipe = Recipe.objects.filter(author=id)
 
     return render(request, html,
                   {'author': author, 'author_recipe': author_recipe})
+
+
+def recipe_favorite_view(request, id):
+    favorite = Recipe.objects.get(id=id)
+    current_user= Author.objects.get(user=request.user)
+
+    current_user.favorite.add(favorite)
+    current_user.save() 
+
+    return HttpResponseRedirect(reverse('homepage'))
 
 
 def recipe_view(request, id):
@@ -110,3 +123,34 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('homepage'))
+
+
+
+
+
+@login_required
+def edit_recipe_view(request, id):
+    html = 'edit.html'
+
+    instance = Recipe.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = RecipeEditForm(
+            request.POST,
+            instance=instance
+            )
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('homepage'))
+    else: 
+        data = {
+            'title': instance.title,
+            'ingredients': instance.ingredients,
+            'instructions': instance.instructions,
+            'time_required': instance.time_required,
+            'description': instance.description,
+            }
+        form = RecipeEditForm(initial=data)
+        
+
+    return render(request, html, {'form': form, 'recipe':instance})
